@@ -1,9 +1,15 @@
 class Config{
     constructor(){
-        this.confConnection = {
+       /* this.confConnection = {
             host: "blqptt7g05ik5jvo4nbi-mysql.services.clever-cloud.com",
             user: "uwklp79oew0ultw7",
-            password: "zp97OWt0EuttWRhXwNCX ",
+            password: "zp97OWt0EuttWRhXwNCX",
+            database: "blqptt7g05ik5jvo4nbi"
+        }*/
+        this.confConnection = {
+            host: "localhost",
+            user: "root",
+            password: "47293202axel",
             database: "blqptt7g05ik5jvo4nbi"
         }
     }
