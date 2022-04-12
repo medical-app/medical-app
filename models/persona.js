@@ -22,14 +22,20 @@ class Persona{
 
     // obtener todo de la tabla persona
     async getPersona(){
-        const query = `SELECT PRI_APELLIDO, SEG_APELLIDO, NOMBRE, FECHA_NACIMIENTO, CORREO, DIRECCION, TELEFONO, FOTO_PERFIL FROM PERSONA WHERE ESTATUS = 1; `;
+        const query = `SELECT ID_PERSONA, PRI_APELLIDO, SEG_APELLIDO, NOMBRE, FECHA_NACIMIENTO, CORREO, DIRECCION, TELEFONO, FOTO_PERFIL FROM PERSONA WHERE ESTATUS = 1; `;
         return await this.functionsDB( query );
     }
 
     // obtener persona por el id
     async getIdPersona(){
-        const query = "SELECT PRI_APELLIDO, SEG_APELLIDO, NOMBRE, FECHA_NACIMIENTO, CORREO, DIRECCION, TELEFONO, FOTO_PERFIL FROM PERSONA WHERE ID_PERSONA = ? ";
+        const query = "SELECT ID_PERSONA, PRI_APELLIDO, SEG_APELLIDO, NOMBRE, FECHA_NACIMIENTO, CORREO, DIRECCION, TELEFONO, FOTO_PERFIL FROM PERSONA WHERE ID_PERSONA = ? ";
         return await this.functionsDB( query, [ this.id ] );
+    }
+
+    // obtner persona por Correo
+    async getEmailPersona(){
+        const query = "SELECT ID_PERSONA, PRI_APELLIDO, SEG_APELLIDO, NOMBRE, FECHA_NACIMIENTO, CORREO, DIRECCION, TELEFONO, FOTO_PERFIL FROM PERSONA WHERE CORREO = ? ";
+        return await this.functionsDB( query, [ this.correo ] );
     }
 
     // agregar persona
@@ -44,7 +50,7 @@ class Persona{
             "DIRECCION": this.direccion,
             "TELEFONO": this.telefono,
             "FOTO_PERFIL": this.foto,
-            "ESTATUS": this.estatus,
+            "ESTATUS": 1,
             "CREATE_AT": await functions.formatDate( Date.now() ),
             "UPDATE_AT": await functions.formatDate( Date.now() )
         }

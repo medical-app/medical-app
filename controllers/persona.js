@@ -5,7 +5,7 @@ const persona = new Persona();
 // obtener todas las personas
 const getAll = async ( req = request, res = response ) => {
     const totalPersonas = await persona.getPersona();
-    res.status(200).json({
+    return res.status(200).json({
         Total: totalPersonas.length,
         Personas: totalPersonas
     });
@@ -30,8 +30,8 @@ const create = async( req = request, res = response ) => {
     if( !result ) return res.status(500).json({"Mensaje": "Error al agregar a ala persona"})
     console.log("resultado de agregar a la persona", result );
 
-    res.status(200).json({
-        msg: 'post create user',
+    return res.status(200).json({
+        msg: 'se a creado la persona correctamente',
         "Persona": persona
     });
 }
@@ -44,7 +44,7 @@ const getById = async ( req = request, res = response ) => {
     persona.id = id;
     const getPersona = await persona.getIdPersona();
 
-    res.status(200).json({
+   return res.status(200).json({
         "Persona": getPersona
     });
 }
@@ -68,7 +68,8 @@ const update = async( req = request, res = response ) => {
     persona.foto            = FOTO_PERFIL;
     const updatePersona = await persona.putPersona();
     const getPersona = await persona.getIdPersona();
-    res.status(200).json({
+
+    return  res.status(200).json({
         msg: 'put update user ',
         getPersona
     });
@@ -81,7 +82,7 @@ const deletePersona = async( req = request, res = response ) => {
     const deleteP = await persona.deletePersona(); 
 
 
-    res.status(200).json({
+    return res.status(200).json({
         msg: 'delete user or update state users',
         deleteP
     });

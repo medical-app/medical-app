@@ -12,6 +12,8 @@ class Config{
             password: "47293202axel",
             database: "blqptt7g05ik5jvo4nbi"
         }
+
+        this.clave_Secreta = "45ta351a11av35creta123123?¿";
     }
 }
 
