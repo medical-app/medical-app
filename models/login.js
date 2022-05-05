@@ -3,7 +3,7 @@ const connection = new Conecction();
 
 
 class Login{
-
+ 
     constructor( password, correo, usuario ){
         this.password = password,
         this.correo = correo,

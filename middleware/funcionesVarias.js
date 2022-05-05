@@ -1,4 +1,3 @@
-const { response, request } = require('express');
 const Persona = require("../models/persona");
 const persona = new Persona();
 
@@ -45,6 +44,18 @@ class FuncionesVarias{
             const erPass =/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,10}$/;
             if( !erPass.test( pass ) ) throw new Error(`La contraseña tiene que tener una Mayuscula, una menuscula, y un numero`);
             
+        }
+
+        //validar si existe el rol
+        async existeRol( descripcion = "" ){
+            console.log(descripcion);
+            const Rol = require("../models/rol");
+            const rol = new Rol();
+            rol.descripcion = descripcion.toUpperCase();
+            console.log(rol);
+
+            const getRol = await rol.getAllTypeRol();
+            if( getRol > 0 ) throw new Error(`Ya existe un rol con la descripcion: ${ descripcion }`)
         }
 
         

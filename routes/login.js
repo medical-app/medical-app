@@ -16,4 +16,4 @@ router.post('/',[
     validateFields
 ],  loginUser );
 
-module.exports = router;
+module.exports = router; 

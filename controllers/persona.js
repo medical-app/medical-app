@@ -36,7 +36,6 @@ const create = async( req = request, res = response ) => {
     });
 }
 
-
 // obtener persona por id
 const getById = async ( req = request, res = response ) => {
 
@@ -50,10 +49,8 @@ const getById = async ( req = request, res = response ) => {
 }
 
 
-
 // actualizar informacion de la persona
 const update = async( req = request, res = response ) => {
-
     const {PRI_APELLIDO, SEG_APELLIDO, NOMBRE, FECHA_NACIMIENTO, CORREO, DIRECCION, TELEFONO, FOTO_PERFIL  } = req.body;
     const { id } = req.params;
   

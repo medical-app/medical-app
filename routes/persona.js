@@ -8,8 +8,8 @@ const { validateFields } = require("../middleware/validateFields");
 const FuncionesVarias = require("../middleware/funcionesVarias");
 const fv = new FuncionesVarias();
 
-const validateJWT = require("../middleware/validateJWT");
-const isSuperRol = require("../middleware/validarRole");
+const validateJWT = require("../middleware/validateJWT"); 
+const { hasRole } = require("../middleware/validarRole");
 
 //obtener todos las personas
 router.get('/', validateFields, getAll );
@@ -63,7 +63,7 @@ router.put('/:id',[
 //eliminar persona
 router.delete('/:id', [
     validateJWT,
-    isSuperRol,
+    hasRole( 'SUPER', 'ADMINISTRADOR'  ),
     check('id', 'No es un id valido').isNumeric(),
     check('id').custom( fv.isvalidateId ),
     validateFields

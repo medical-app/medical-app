@@ -10,11 +10,15 @@ class Server {
 
         // dividir las rutas
         this.paths = {
-            user: '/api/users',
+            user: '/api/user',
             persona: "/api/persona",
             rol: "/api/rol",
             login: "/api/login",
-            img: "/api/img"
+            img: "/api/img",
+            medico: "/api/medico",
+            consultorio: "/api/consultorio",
+            cita: "/api/cita",
+            categoria: "/api/categoria"
         }
 
         // middlewares
@@ -43,6 +47,10 @@ class Server {
        this.app.use( this.paths.rol,         require('../routes/rol'));
        this.app.use( this.paths.login,       require('../routes/login'));
        this.app.use( this.paths.img,         require('../routes/img'));
+       this.app.use( this.paths.medico,      require('../routes/medico'));
+       this.app.use( this.paths.consultorio, require('../routes/consultorio'));
+       this.app.use( this.paths.cita,        require('../routes/cita'));
+       this.app.use( this.paths.categoria,   require('../routes/categoria'));
     }
 
     listen(){

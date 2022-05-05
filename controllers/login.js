@@ -2,14 +2,20 @@ const { response, request, json } = require('express');
 const Login = require("../models/login");
 const login = new Login();
 const { generateJWT } = require('../helpers/createJWT');
+const bcryptjs = require('bcryptjs');
 
-
+ 
 //Validar el login
 const loginUser = async( req = request, res = response ) =>{
     
-    const { PASSWORD, EMAIL } = req.body;
-    login.correo = EMAIL;
-    login.password = PASSWORD;
+    const { PASSWORD, CORREO } = req.body;
+    // encriptar la contrasenia 
+    const salt = bcryptjs.genSaltSync(10);
+
+    login.correo = CORREO;
+    login.password = bcryptjs.hashSync( PASSWORD, salt );
+
+    console.log(login);
 
     const validate = await login.validateCreden();
     if( !validate ) return res.status(500).json({"Mensaje": "Error al validar el usuario"});
